@@ -8,7 +8,8 @@ from flask_cors import CORS
 from models import set_up_db
 from models import Movies, Actors, Sets, db
 import sys
-from auth.auth import AuthError, auth_required 
+from auth.auth import AuthError, auth_required, AUTH0_CALLBACK_URL, \
+    AUTH0_CLIENT_ID, AUTH0_DOMAIN, AUTH0_JWT_API_AUDIENCE  
 
 MAX_MOVIES_PER_PAGE = 10
 MAX_ACTORS_PER_PAGE = 10
@@ -24,7 +25,16 @@ def create_app(test_config=None):
 
 app = create_app()
 
-
+@app.route("/authorization/url", methods=["GET"])
+def generate_auth_url():
+    url = f'https://{AUTH0_DOMAIN}/authorize' \
+        f'?audience={AUTH0_JWT_API_AUDIENCE}' \
+        f'&response_type=token&client_id=' \
+        f'{AUTH0_CLIENT_ID}&redirect_uri=' \
+        f'{AUTH0_CALLBACK_URL}'
+    return jsonify({
+        'url': url
+    })
 
 def paginate(items, max_per_page):
     page = request.args.get("page", 1, type=int)
