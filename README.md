@@ -106,7 +106,7 @@ To start and run the local development server,
       * username casting-director@gmail.com
       * password New_movie_user_2019
     Executive Producer
-       * username casting-director@gmail.com
+       * username excutive_producer@gmail.com
        * password New_movie_user_2019
 3. Get the token from the browser redirect after logging in with one of these users
    This depends on the action you want to perform
@@ -125,8 +125,7 @@ To start and run the local development server,
     ```
    2. Test instructions
       Test your endpoints with [Postman](https://getpostman.com). 
-      - get an authorization url **https://udacity-movies-app-fsnd.herokuapp.com/**
+      - get an authorization url **https://moviesapiauth0.herokuapp.com/**
       - login with one of the users specified in **2. Get token**
-      - Import the postman collection `./starter/casting_gency_postman_collection.json`
       - use the token above to test the endpoints (take note of user permissions as listed above)
      
