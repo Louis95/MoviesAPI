@@ -9,7 +9,7 @@ import os
 
 
 # Configurations gotten from the account created on Auth0
-AUTH0_DOMAIN = os.environ["serverless-todo-app.auth0.com"]
+AUTH0_DOMAIN = os.environ["AUTH0_DOMAIN"]
 JWT_TOKEN_ENCRYPTION_ALGORITHMS, = os.environ["JWT_TOKEN_ENCRYPTION_ALGORITHMS"]
 AUTH0_JWT_API_AUDIENCE = os.environ["AUTH0_JWT_API_AUDIENCE"]
 AUTH0_CLIENT_ID = os.environ["AUTH0_CLIENT_ID"]
