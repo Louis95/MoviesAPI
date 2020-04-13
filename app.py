@@ -27,11 +27,13 @@ app = create_app()
 
 @app.route("/authorization/url", methods=["GET"])
 def generate_auth_url():
+    print(os.environ)
     url = f'https://{AUTH0_DOMAIN}/authorize' \
         f'?audience={AUTH0_JWT_API_AUDIENCE}' \
         f'&response_type=token&client_id=' \
         f'{AUTH0_CLIENT_ID}&redirect_uri=' \
         f'{AUTH0_CALLBACK_URL}'
+        
     return jsonify({
         'url': url
     })

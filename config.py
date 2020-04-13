@@ -8,7 +8,7 @@ DEBUG = True
 
 # Database connection string
 # SQLALCHEMY_DATABASE_URI = 'postgres://udacity@localhost:5432/movies'
-SQLALCHEMY_DATABASE_URI = os.environ["SQLALCHEMY_DATABASE_URI"]
+SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URL"]
 
 # Supress warning
 SQLALCHEMY_TRACK_MODIFICATIONS = False
