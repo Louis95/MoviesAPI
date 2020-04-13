@@ -5,7 +5,7 @@
 
 # Configurations gotten from the account created on Auth0
 export AUTH0_DOMAIN = 'serverless-todo-app.auth0.com'
-export JWT_TOKEN_ENCRYPTION_ALGORITHMS, = ['RS256']
+export JWT_TOKEN_ENCRYPTION_ALGORITHMS = ['RS256']
 export AUTH0_JWT_API_AUDIENCE = 'image'
 export AUTH0_CLIENT_ID = "AEtFJ2SAuR9Lqaz5RYyuCpQdGGdKc5ut"
 export AUTH0_CALLBACK_URL = "https://localhost:5000/login-results"
