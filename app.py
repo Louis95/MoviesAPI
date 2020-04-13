@@ -257,6 +257,11 @@ def unauthorized(error):
         "message": "Unauthorized"
     }), 401
 
+@app.errorhandler(AuthError)
+def unauthorized(error):
+    return jsonify(
+        error.error,
+    ), error.status_code
     
     return app
 
