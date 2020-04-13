@@ -4,15 +4,16 @@ from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 import requests
-import sys 
+import sys
+import os 
 
 
 # Configurations gotten from the account created on Auth0
-AUTH0_DOMAIN = 'serverless-todo-app.auth0.com'
-JWT_TOKEN_ENCRYPTION_ALGORITHMS, = ['RS256']
-AUTH0_JWT_API_AUDIENCE = 'image'
-AUTH0_CLIENT_ID = "AEtFJ2SAuR9Lqaz5RYyuCpQdGGdKc5ut"
-AUTH0_CALLBACK_URL = "https://localhost:5000/login-results"
+AUTH0_DOMAIN = os.environ["serverless-todo-app.auth0.com"]
+JWT_TOKEN_ENCRYPTION_ALGORITHMS, = os.environ["JWT_TOKEN_ENCRYPTION_ALGORITHMS"]
+AUTH0_JWT_API_AUDIENCE = os.environ["AUTH0_JWT_API_AUDIENCE"]
+AUTH0_CLIENT_ID = os.environ["AUTH0_CLIENT_ID"]
+AUTH0_CALLBACK_URL = os.environ["AUTH0_CALLBACK_URL"]
 
 class AuthError(Exception):
     def __init__(self, error, status_code):
@@ -104,6 +105,12 @@ def verify_decode_jwt(token):
                     'status': 401,
                     'message': 'invalid auth token'
                 }, status_code=401)
+            except Exception:
+                print(sys.exc_info())
+                raise AuthError({
+                    'status': 500,
+                    'message': 'token has expired'
+                }, status_code=500)
         raise AuthError({
             'code': 'invalid token',
             'description': 'please provide a valid token.'
@@ -112,6 +119,7 @@ def verify_decode_jwt(token):
         'code': 'invalid token',
         'description': 'please provide a valid token.'
     }, 401)
+
 
 
 def check_permissions(permission, jwt_payload):

@@ -214,6 +214,44 @@ def patch_actor(token, actor_id):
         abort(400)
 
 
+
+@app.errorhandler(404)
+def not_found(error):
+    return jsonify({
+        "success": False,
+        "error": 404,
+        "message": "resource not found"
+    }), 404
+
+@app.errorhandler(422)
+def unprocessable(error):
+    return jsonify({
+        "success": False,
+        "error": 422,
+        "message": "unprocessable"
+    }), 422
+
+@app.errorhandler(400)
+def bad_request(error):
+    return jsonify({
+        "success": False,
+        "error": 400,
+        "message": "bad request"
+    }), 400
+
+@app.errorhandler(500)
+def bad_request(error):
+    return jsonify({
+        "success": False,
+        "error": 500,
+        "message": "Expired token"
+    }), 500
+
+    
+    return app
+
+
+
 #You need to use following line [app Flask(__name__]
 # app = Flask(__name__)
 # @app.route('/')
