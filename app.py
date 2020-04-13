@@ -242,7 +242,7 @@ def bad_request(error):
     }), 400
 
 @app.errorhandler(500)
-def bad_request(error):
+def internal_server(error):
     return jsonify({
         "success": False,
         "error": 500,
@@ -250,7 +250,7 @@ def bad_request(error):
     }), 500
 
 @app.errorhandler(401)
-def bad_request(error):
+def unauthorized(error):
     return jsonify({
         "success": False,
         "error": 401,
