@@ -249,6 +249,14 @@ def bad_request(error):
         "message": "Expired token"
     }), 500
 
+@app.errorhandler(401)
+def bad_request(error):
+    return jsonify({
+        "success": False,
+        "error": 401,
+        "message": "Unauthorized"
+    }), 401
+
     
     return app
 
